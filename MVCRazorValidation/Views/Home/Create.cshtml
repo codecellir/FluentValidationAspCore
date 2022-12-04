@@ -1,0 +1,22 @@
+﻿@model MVCRazorValidation.Models.User
+
+<form asp-action="Create" method="post" asp-controller="home">
+    <div class="row col-md-3">
+        <div class="form-control">
+            <label>Name:</label>
+            <input asp-for="Name" class="form-control" />
+            <span asp-validation-for="Name" class="text-danger"></span>
+        </div>
+        <div class="form-control">
+            <label>LastName:</label>
+            <input asp-for="Family" class="form-control" />
+            <span asp-validation-for="Family" class="text-danger"></span>
+        </div>
+        <div class="form-control">
+            <label>Age:</label>
+            <input asp-for="Age" class="form-control" />
+            <span asp-validation-for="Age" class="text-danger"></span>
+        </div>
+    </div>
+    <button class="btn btn-success" type="submit">Submit</button>
+</form>
