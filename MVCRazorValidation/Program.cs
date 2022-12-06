@@ -1,4 +1,5 @@
 using FluentValidation;
+using FluentValidation.AspNetCore;
 using MVCRazorValidation.Models;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -7,7 +8,7 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllersWithViews();
 
 builder.Services.AddScoped<IValidator<User>, UserValidator>();
-
+//builder.Services.AddFluentValidationAutoValidation();
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
