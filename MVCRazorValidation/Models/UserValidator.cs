@@ -9,14 +9,14 @@ namespace MVCRazorValidation.Models
             RuleLevelCascadeMode = CascadeMode.Continue;
 
             RuleFor(x => x.Name)
-                //.NotEmpty()
-                //.MinimumLength(5);
-                //.MaximumLength(10);
-                .Length(5, 10);
+                .NotEmpty();
+            //.MinimumLength(5);
+            //.MaximumLength(10);
+            //.Length(5, 10);
 
-            RuleFor(x => x.Family)
+            RuleFor(x => x.Family).NotEmpty();
                 //.NotNull();
-                .Null();
+                //.Null();
 
             RuleFor(x => x.Age)
                //.NotEmpty();
@@ -29,16 +29,23 @@ namespace MVCRazorValidation.Models
                .ExclusiveBetween(5, 10);
 
             RuleFor(x => x.Email)
-                .EmailAddress();
+                .NotEmpty();
+            //.EmailAddress();
 
             //Regular Expression Validator
-            RuleFor(x => x.Mobile)
-            .Matches(@"^09\d{9}$");
+            RuleFor(x => x.Mobile).NotEmpty();
+            //.Matches(@"^09\d{9}$");
 
             //Predicate Validator example
-            RuleFor(x => x.ShabaNumber)
-                .Must(x => x.StartsWith("IR", StringComparison.OrdinalIgnoreCase))
-                .Length(36);
+            RuleFor(x => x.ShabaNumber).NotEmpty();
+            //.Must(x => x.StartsWith("IR", StringComparison.OrdinalIgnoreCase))
+            //.Length(36);
+
+            RuleFor(x => x.Address)
+                .SetValidator(new AddressValidator());
+
+            RuleForEach(x=>x.Courses)
+                .SetValidator(new CourseValidator());
         }
     }
 }
