@@ -9,9 +9,17 @@ namespace MVCRazorValidation.Models
             RuleLevelCascadeMode = CascadeMode.Continue;
 
             RuleFor(x => x.Name)
-                .NotEmpty();
-            //.MinimumLength(5);
-            //.MaximumLength(10);
+                .NotEmpty()
+                .WithName("first name")
+                .WithMessage("enter your {PropertyName}")
+            .MinimumLength(5)
+            .WithMessage("{PropertyName} must greater than or equal {MinLength} charachter, you are entered {TotalLength} charachter")
+            .MaximumLength(10)
+            .WithMessage("{PropertyName} must less than or equal {MaxLength} charachter, you are entered {TotalLength} charachter")
+            .NotEqual("codecell")
+            .WithMessage("{ComparisonValue} is not valid for {PropertyName}")
+            .NotEqual(x => x.Mobile)
+            .WithMessage("{ComparisonProperty} and {PropertyName} can not equal");
             //.Length(5, 10);
 
             RuleFor(x => x.Family).NotEmpty();
